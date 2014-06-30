@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>D3 Test</title>
+    <script type="text/javascript" src="d3/d3.v3.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      /*
+        Tutorial from: http://alignedleft.com/tutorials/d3/binding-data
+        Binding data to D3 objects
+        -- selection.data()
+          example: tr.selectAll("td").data(function(d) { return d; })
+      */
+      var dataset = [ 5, 10, 15, 20, 25 ];
+      var dataset_two = [
+      {
+          name: "one",
+          description: "test",
+          value: 5
+      },
+      {
+          name: "two",
+          description: "test2",
+          value: 10
+      }];
+      d3.select("body").selectAll("p")
+        .data(dataset_two)                  // counts and parses our data values
+                                        // Five values in our data set means
+                                        // everything past this point is executed
+                                        // five times, once for ech value
+        .enter()                        // Method looks at the DOM, and then at the
+                                        // data being handed to it. Creates a
+                                        // new placeholder element if there are
+                                        // more data values than corresponding DOM
+                                        // DOM elements in the selection
+                                        // SHORT: creates new, data-bounded elements
+        .append("p")
+        .text(function(d) { return "The description of this project is: " + d.description; }); // Any time after calling .data, you can
+                                        // create an anonymous function that takes
+                                        // "d" as input and you can use it w/in
+                                        // the function, d is set to the corresponding
+                                        // value in the original data set
+    </script>
+  </body>
+    
